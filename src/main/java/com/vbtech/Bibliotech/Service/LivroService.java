@@ -31,6 +31,9 @@ public class LivroService {
     }
 
     public List<LivroEntity> listarLivros() {
+        if (livroRepository.count() == 0 || livroRepository.findAll().isEmpty()) {
+            throw new IllegalArgumentException("Nenhum livro cadastrado");
+        }
        return livroRepository.findAll();
     }
 
@@ -39,9 +42,17 @@ public class LivroService {
     }
 
     public List<LivroEntity> buscarPorTitulo(String titulo) {
+        if(titulo == null || titulo.isEmpty()){
+            throw new IllegalArgumentException("O título do livro não pode ser vazio");
+        }
         return livroRepository.findByTituloContainingIgnoreCase(titulo);
     }
+
+
     public List<LivroEntity> buscarPorAutor(String autor) {
+        if(autor == null || autor.isEmpty()){
+            throw new IllegalArgumentException("O autor do livro não pode ser vazio");
+        }
         return livroRepository.findByAutorContainingIgnoreCase(autor);
     }
 
