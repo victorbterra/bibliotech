@@ -6,6 +6,8 @@ import com.vbtech.Bibliotech.Repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LivroService {
 
@@ -27,4 +29,14 @@ public class LivroService {
         }
         return livroRepository.save(livro);
     }
+
+    public List<LivroEntity> listarLivros() {
+       return livroRepository.findAll();
+    }
+
+    public LivroEntity buscarPorId(Long id) {
+        return livroRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Livro não encontrado"));
+    }
+
+
 }

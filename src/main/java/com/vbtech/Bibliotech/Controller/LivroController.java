@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/livros")
 public class LivroController {
@@ -20,5 +22,15 @@ public class LivroController {
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();
         }
+    }
+    @GetMapping
+    public ResponseEntity<List<LivroEntity>> listarLivros() {
+        List <LivroEntity> livros = livroService.listarLivros();
+        return ResponseEntity.ok(livros);
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<LivroEntity> buscarLivroPorId(@PathVariable Long id) {
+        LivroEntity livro = livroService.buscarPorId(id);
+        return ResponseEntity.ok(livro);
     }
 }
