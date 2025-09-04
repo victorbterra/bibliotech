@@ -38,5 +38,11 @@ public class LivroService {
         return livroRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Livro não encontrado"));
     }
 
+    public List<LivroEntity> buscarPorTitulo(String titulo) {
+        return livroRepository.findByTituloContainingIgnoreCase(titulo);
+    }
+    public List<LivroEntity> buscarPorAutor(String autor) {
+        return livroRepository.findByAutorContainingIgnoreCase(autor);
+    }
 
 }

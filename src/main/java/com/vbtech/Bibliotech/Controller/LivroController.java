@@ -1,5 +1,4 @@
 package com.vbtech.Bibliotech.Controller;
-
 import com.vbtech.Bibliotech.Entity.LivroEntity;
 import com.vbtech.Bibliotech.Service.LivroService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +30,18 @@ public class LivroController {
     @GetMapping("/{id}")
     public ResponseEntity<LivroEntity> buscarLivroPorId(@PathVariable Long id) {
         LivroEntity livro = livroService.buscarPorId(id);
+        return ResponseEntity.ok(livro);
+    }
+
+    @GetMapping(value = "/search", params = "titulo")
+    public ResponseEntity<List<LivroEntity>> buscarLivroPorTitulo(@RequestParam String titulo) {
+        List<LivroEntity> livro = livroService.buscarPorTitulo(titulo);
+        return ResponseEntity.ok(livro);
+    }
+
+    @GetMapping(value = "/search", params = "autor")
+    public ResponseEntity<List<LivroEntity>> buscarLivroPorAutor(@RequestParam String autor) {
+        List<LivroEntity> livro = livroService.buscarPorAutor(autor);
         return ResponseEntity.ok(livro);
     }
 }
