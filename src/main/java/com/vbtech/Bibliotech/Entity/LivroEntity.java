@@ -1,4 +1,4 @@
-package com.vbtech.Bibliotech.entity;
+package com.vbtech.Bibliotech.Entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,8 +17,8 @@ public class LivroEntity {
     private Long id;
 
     private String titulo;
-    private String Descricao;
     private String autor;
     private String isbn;
     private int anoPublicacao;
+    private String Descricao;
 }
