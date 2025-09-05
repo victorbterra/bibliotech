@@ -17,30 +17,18 @@ public class UsuarioController {
 
     @PostMapping
     public ResponseEntity<UsuarioEntity> salvarUsuario(@RequestBody UsuarioEntity usuario){
-        try {
             UsuarioEntity novoUsuario = usuarioService.criarUsuario(usuario);
             return ResponseEntity.ok(novoUsuario);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioEntity> buscarUsuarioPorId(@PathVariable Long id){
-        try {
             UsuarioEntity usuario = usuarioService.obterUsuarioPorId(id);
             return ResponseEntity.ok(usuario);
-        } catch (Exception e) {
-            return ResponseEntity.notFound().build();
-        }
     }
 
     @GetMapping ResponseEntity<List<UsuarioEntity>> listarUsuarios(){
-        try {
             List<UsuarioEntity> usuarios = usuarioService.ListarUsuarios();
             return ResponseEntity.ok(usuarios);
-        } catch (Exception e) {
-            return ResponseEntity.noContent().build();
-        }
     }
 }
