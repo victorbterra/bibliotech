@@ -42,18 +42,27 @@ public class LivroService {
     }
 
     public List<LivroEntity> buscarPorTitulo(String titulo) {
-        if(titulo == null || titulo.isEmpty()){
-            throw new IllegalArgumentException("O título do livro não pode ser vazio");
+        try {
+            if(titulo == null || titulo.isEmpty()){
+                throw new IllegalArgumentException("O título do livro não pode ser vazio");
+            }
+            return livroRepository.findByTituloContainingIgnoreCase(titulo);
+        } catch (IllegalArgumentException e) {
+            throw new RuntimeException(e);
         }
-        return livroRepository.findByTituloContainingIgnoreCase(titulo);
     }
 
 
     public List<LivroEntity> buscarPorAutor(String autor) {
-        if(autor == null || autor.isEmpty()){
-            throw new IllegalArgumentException("O autor do livro não pode ser vazio");
+        try {
+            if(autor == null || autor.isEmpty()){
+                throw new IllegalArgumentException("O autor do livro não pode ser vazio");
+            }
+            return livroRepository.findByAutorContainingIgnoreCase(autor);
+        } catch (IllegalArgumentException e) {
+            throw new RuntimeException(e);
         }
-        return livroRepository.findByAutorContainingIgnoreCase(autor);
+
     }
 
 }
