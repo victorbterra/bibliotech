@@ -27,6 +27,7 @@ public class LivroService {
         if(livro.getAnoPublicacao() <= 0){
             throw new IllegalArgumentException("O ano de publicação do livro deve ser um número positivo");
         }
+        livro.setStatus("DISPONIVEL");
         return livroRepository.save(livro);
     }
 

@@ -21,4 +21,5 @@ public class LivroEntity {
     private String isbn;
     private int anoPublicacao;
     private String Descricao;
+    private String status;
 }
