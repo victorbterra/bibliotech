@@ -42,4 +42,19 @@ public class EmprestimoService {
 
         return emprestimoRepository.save(novoEmprestimo);
     }
+
+    @Transactional
+    public EmprestimoEntity realizarDevolucao(Long emprestimoId) {
+        EmprestimoEntity emprestimo = emprestimoRepository.findById(emprestimoId)
+                .orElseThrow(() -> new RuntimeException("Empréstimo não encontrado com ID: " + emprestimoId));
+        if(emprestimo.getDataDevolucaoReal()!=null){
+            throw new RuntimeException("Este empréstimo já foi devolvido.");
+        }
+
+        LivroEntity livro = emprestimo.getLivro();
+        livro.setStatus("DISPONIVEL");
+        emprestimo.setDataDevolucaoReal(LocalDate.now());
+        return emprestimo;
+
+    }
 }

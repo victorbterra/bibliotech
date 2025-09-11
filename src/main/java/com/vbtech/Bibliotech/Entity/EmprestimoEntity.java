@@ -26,4 +26,5 @@ public class EmprestimoEntity {
 
     private LocalDate dataEmprestimo;
     private LocalDate dataDevolucao;
+    private LocalDate dataDevolucaoReal;
 }
